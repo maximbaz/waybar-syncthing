@@ -1,0 +1,7 @@
+[package]
+name = "waybar-syncthing"
+version = "1.0.0"
+edition = "2021"
+license = "ISC"
+
+[dependencies]
