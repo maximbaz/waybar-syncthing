@@ -142,7 +142,7 @@ impl Runner {
                 folders
                     .iter()
                     .map(|(_, (completion, need_bytes))| {
-                        format!("  {}%, {}", completion, need_bytes)
+                        format!(" {}%/{}", completion, need_bytes)
                     })
                     .collect::<Vec<_>>()
             })
@@ -168,8 +168,11 @@ impl Runner {
                             .unwrap_or(folder.as_str());
 
                         format!(
-                            "{}: {} ({:.0}%, {})",
-                            device_name, folder_name, completion, need_bytes
+                            "{:<10} {:<10} ({:.0}%, {})",
+                            format!("{}:", device_name),
+                            folder_name,
+                            completion,
+                            need_bytes
                         )
                     })
                     .collect::<Vec<_>>()
