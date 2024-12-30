@@ -11,7 +11,10 @@
       let
         pkgs = import nixpkgs { inherit system; };
         naersk-lib = pkgs.callPackage naersk { };
-        libs = [ ];
+        libs = with pkgs; [
+          openssl
+        ];
+
       in
       {
         defaultPackage = naersk-lib.buildPackage {
@@ -24,7 +27,7 @@
           buildInputs = libs;
         };
         devShell = with pkgs; mkShell {
-          buildInputs = [ cargo rustc rustfmt pre-commit rustPackages.clippy ] ++ libs;
+          buildInputs = [ cargo rustc rustfmt pre-commit rustPackages.clippy pkg-config ] ++ libs;
           RUST_SRC_PATH = rustPlatform.rustLibSrc;
         };
       }
